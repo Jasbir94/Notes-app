@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #__next {
+  height: 100%;
+}
+
+/* Import a clean system font for better UI */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* Basic global styles */
+:root {
+  --bg: #f8fafc; /* light neutral */
+  --card: #ffffff;
+  --muted: #6b7280;
+  --accent-1: #7c3aed; /* purple */
+  --accent-2: #ec4899; /* pink */
+  --glass: rgba(255,255,255,0.6);
+}
+
+body {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background-color: var(--bg);
+}
+
+/* Utility: card shadow */
+.card-shadow {
+  box-shadow: 0 10px 30px rgba(2,6,23,0.08);
+}
+
+/* Base typography */
+h1, h2, h3 {
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* Buttons */
+.btn {
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+  padding:.5rem .9rem; border-radius:.75rem; font-weight:600; cursor:pointer;
+  transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+}
+.btn:active { transform: translateY(1px) scale(.995); }
+.btn:disabled { opacity:.6; cursor:not-allowed; }
+
+.btn-primary {
+  background: linear-gradient(90deg,var(--accent-1),var(--accent-2));
+  color: white; box-shadow: 0 6px 18px rgba(124,58,237,0.18);
+}
+.btn-secondary {
+  background: transparent; border:1px solid rgba(15,23,42,0.06); color:var(--muted);
+}
+.btn-danger { background:#fee2e2; color:#b91c1c; }
+
+/* Form inputs */
+.form-input { width:100%; padding:.75rem; border-radius:.75rem; border:1px solid rgba(15,23,42,0.06); background:var(--card); }
+.form-input:focus { outline:none; box-shadow:0 6px 18px rgba(59,130,246,0.12); border-color: rgba(59,130,246,0.3); }
+
+/* Note card consistent styling */
+.note-card { background: var(--card); border-radius:1rem; padding:1rem; }
+
+/* Grid tweaks */
+.notes-grid { display:grid; gap:1.25rem; grid-template-columns:repeat(1,1fr); }
+@media (min-width:768px) { .notes-grid { grid-template-columns:repeat(2,1fr); } }
+
+/* Decorative accent classes (ensures Tailwind picks up these classes) */
+.accent-pink { background: linear-gradient(90deg,#fff0f6,#fff1f2); }
+.accent-rose { background: linear-gradient(90deg,#fff7f9,#fff1f2); }
+.accent-indigo { background: linear-gradient(90deg,#eef2ff,#eef4ff); }
+.accent-green { background: linear-gradient(90deg,#ecfdf5,#f0fdf4); }
+.accent-yellow { background: linear-gradient(90deg,#fefce8,#fffbeb); }
+
+/* Animations */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes floatY {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+
+  @keyframes slowRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  @keyframes popIn {
+    0% { transform: scale(.98); opacity: 0; }
+    60% { transform: scale(1.02); opacity: 1; }
+    100% { transform: scale(1); }
+  }
+
+  .animate-float { animation: floatY 6s ease-in-out infinite; }
+  .animate-rotate-slow { animation: slowRotate 20s linear infinite; }
+  .animate-pop { animation: popIn .45s cubic-bezier(.2,.9,.2,1) both; }
+}
+
+/* Accessibility: respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float, .animate-rotate-slow, .animate-pop { animation: none !important; }
+}
+
+
